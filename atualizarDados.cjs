@@ -3,7 +3,7 @@ async function getDataFromREST(){
     //fetch
     const response = await fetch("https:/api.restful-api.dev/objects");
 
-    const vetDados = response;
+    const vetDados = response.body;
     return vetDados;
 }
 

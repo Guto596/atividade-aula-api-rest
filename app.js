@@ -13,13 +13,14 @@ const __dirname = dirname(__filename);
 let dados = [];
 
 app.get("/", (req, res) => {
-    res.sendFile(join(__dirname, "public/static/index.html"));
     dados = [];
+    console.log(getDataFromREST());
     dados = [getDataFromREST()];
+    res.sendFile(join(__dirname, "public/static/index.html"));
 });
 
 app.get("/objetos", (req, res) => {
-   res.send()
+   res.send(dados);
 });
 
 app.listen(3000, () => {

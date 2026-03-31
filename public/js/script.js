@@ -1,5 +1,12 @@
-document.querySelector("#btnListar").addEventListener("click", listarItens());
+document.querySelector("#btnListar").addEventListener("click", listarItens);
 
 async function listarItens() {
-    const response = await fetch("https://localhost:3000/objetos");
+    console.log("listaritens")
+    const response = await fetch("/objetos");
+    if(response.ok){
+        console.log('ok');
+        console.log( JSON.stringify(response.body) );
+    }else{
+        log("erro: " + response.status);
+    }
 }
