@@ -1,7 +1,7 @@
 import express from "express";
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
-import { getDataFromREST } from "./atualizarDados.js"
+import { getDataFromREST } from "./atualizarDados.cjs"
 const app = express();
 
 app.use(express.static('public'));
