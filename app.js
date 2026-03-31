@@ -14,8 +14,9 @@ let dados = [];
 
 app.get("/", (req, res) => {
     dados = [];
-    console.log(getDataFromREST());
-    dados = [getDataFromREST()];
+    let responseData = getDataFromREST();
+    console.log(JSON.stringify(responseData));
+        
     res.sendFile(join(__dirname, "public/static/index.html"));
 });
 

@@ -1,10 +1,11 @@
-async function getDataFromREST(){
+async function getDataFromREST() {
 
     //fetch
     const response = await fetch("https:/api.restful-api.dev/objects");
-
-    const vetDados = response.body;
-    return vetDados;
+    if (response.ok) {
+        const vetDados = response.json;
+        return vetDados;
+    }
 }
 
 // let dados =[];
