@@ -12,10 +12,11 @@ const __dirname = dirname(__filename);
 
 let dados = [];
 
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
     dados = [];
-    let responseData = getDataFromREST();
-    console.log(JSON.stringify(responseData));
+    let responseData = await getDataFromREST();
+    dados = responseData;
+    //console.log("dados recebidos:", JSON.stringify(responseData));
         
     res.sendFile(join(__dirname, "public/static/index.html"));
 });

@@ -1,9 +1,9 @@
 async function getDataFromREST() {
 
     //fetch
-    const response = await fetch("https:/api.restful-api.dev/objects");
+    const response = await fetch("https://api.restful-api.dev/objects");
     if (response.ok) {
-        const vetDados = response.json;
+        const vetDados = response.json();
         return vetDados;
     }
 }
