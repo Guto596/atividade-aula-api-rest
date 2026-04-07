@@ -1,3 +1,5 @@
+import { atualizarTabela } from "./atualizarTabela.js";
+
 document.querySelector("#btnListar").addEventListener("click", listarItens);
 document.querySelector("#btnBuscar").addEventListener("click", buscarItem);
 document.querySelector("#btnCadastrar").addEventListener("click", cadastrarItem);
@@ -13,7 +15,7 @@ async function listarItens() {
         const itensListados = await response.json();
         console.log(itensListados);
 
-        const tabela = document.querySelector("#tabela");
+        atualizarTabela();
 
         itensListados.forEach((item) => {
             const linha = document.createElement("tr");
@@ -36,11 +38,27 @@ async function listarItens() {
 }
 
 async function buscarItem() {
-    console.log("buscaritens");
-    idItem = document.querySelector("#campoId").value;
-    const response = await fetch(`/objetos/${idItem}`);
+    
+    const idDispositivo = document.querySelector("#campoId").value;
+
+    atualizarTabela();
+
+    const response = await fetch(`/objetos/${idDispositivo}`);
     if (response.ok) {
         console.log('Item buscado');
+        const dispProcurado = await response.json();
+        
+        const linha = document.createElement("tr");
+            
+        linha.innerHTML = `
+            <td>${dispProcurado.id}</td>
+            <td>${dispProcurado.name}</td>
+            <td>${dispProcurado.data.color}</td>
+            <td>${dispProcurado.data.capacity}</td>
+            <td>${dispProcurado.data.price}<td>
+        `
+        tabela.appendChild(linha);
+
     } else {
         console.log(response.status);
     }
@@ -83,5 +101,5 @@ async function cadastrarItem() {
 }
 
 async function atualizarItem() {
-    console.log("atualizaritem")
+    console.log("atualizaritem");
 }

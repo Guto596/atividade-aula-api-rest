@@ -26,11 +26,19 @@ app.get("/objetos", (req, res) => {
    res.send(dados);
 });
 
+app.get("/objetos/:id", (req, res) => {
+    const idDisp = req.params.id;
+
+    const dispProcurado = dados.find(disp => disp.id == idDisp);
+
+    res.send(dispProcurado);
+});
+
 app.post("/objetos/cadastrar", (req, res) => {
     const novoDispositivo = req.body;
 
     console.log(novoDispositivo);
-    
+
     dados.push(novoDispositivo);
 });
 
