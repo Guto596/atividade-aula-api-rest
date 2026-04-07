@@ -6,12 +6,32 @@ document.querySelector("#btnAtualizar").addEventListener("click", atualizarItem)
 
 async function listarItens() {
     console.log("listaritens");
-    const response = await fetch("/");
-    if(response.ok){
-        console.log('Itens buscados');
-        console.log( JSON.stringify(response.body) );
+    const response = await fetch("/objetos");
+    if(response.ok) {
+
+        console.log('Itens listados');
+        const itensListados = await response.json();
+        console.log(itensListados);
+
+        const tabela = document.querySelector("#tabela");
+
+        itensListados.forEach((item) => {
+            const linha = document.createElement("tr");
+            
+            linha.innerHTML = `
+                <td>${item.id}</td>
+                <td>${item.name}</td>
+                <td>${item.data.color}</td>
+                <td>${item.data.capacity}</td>
+                <td>${item.data.price}<td>
+            `
+
+            tabela.appendChild(linha);
+        });
+
+        
     }else{
-        log("erro: " + response.status);
+        console.log("erro: " + response.status);
     }
 }
 
