@@ -48,13 +48,35 @@ async function buscarItem() {
 
 async function cadastrarItem() {
     console.log("cadastraritem");
+    const idDispositivo = document.querySelector("#campoId").value;
+    const nome = document.querySelector("#campoNome").value;
+    const cor = document.querySelector("#campoCor").value;
+    const capacidade = document.querySelector("#campoCapacidade").value;
+    const preco = document.querySelector("#campoPreco").value;
+
+    const objetoDispositivo = {
+        id: idDispositivo,
+        name: nome,
+        data: {
+            color: cor,
+            capacity: capacidade,
+            price: preco
+        }
+    }
+    console.log(objetoDispositivo);
+
     const response = await fetch("/objetos/cadastrar", {
         method: "POST",
-        headers: "application/json",
-        //body:
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(objetoDispositivo)
     });
     if (response.ok) {
+
         console.log('Item cadastrado');
+        alert("Dispositivo cadastrado!");
+
     } else {
         console.log(response.status);
     }

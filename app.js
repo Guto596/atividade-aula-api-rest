@@ -5,6 +5,7 @@ import { getDataFromREST } from "./atualizarDados.cjs"
 const app = express();
 
 app.use(express.static('public'));
+app.use(express.json());
 
 // Replicando o __dirname
 const __filename = fileURLToPath(import.meta.url);
@@ -23,6 +24,14 @@ app.get("/", async (req, res) => {
 
 app.get("/objetos", (req, res) => {
    res.send(dados);
+});
+
+app.post("/objetos/cadastrar", (req, res) => {
+    const novoDispositivo = req.body;
+
+    console.log(novoDispositivo);
+    
+    dados.push(novoDispositivo);
 });
 
 app.listen(3000, () => {
