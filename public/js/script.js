@@ -4,7 +4,7 @@ document.querySelector("#btnListar").addEventListener("click", listarItens);
 document.querySelector("#btnBuscar").addEventListener("click", buscarItem);
 document.querySelector("#btnCadastrar").addEventListener("click", cadastrarItem);
 document.querySelector("#btnAtualizar").addEventListener("click", atualizarItem);
-//document.querySelector("#btnExcluir").addEventListener("click", excluirItem);
+document.querySelector("#btnExcluir").addEventListener("click", excluirItem);
 
 async function listarItens() {
     console.log("listaritens");
@@ -102,4 +102,15 @@ async function cadastrarItem() {
 
 async function atualizarItem() {
     console.log("atualizaritem");
+}
+
+async function excluirItem() {
+    const idDispositivo = document.querySelector("#campoId").value;
+
+    const response = await fetch(`/objetos/excluir/${idDispositivo}`, {
+        method: "DELETE"
+    });
+    if (response.ok) {
+        console.log(response.status);
+    }
 }

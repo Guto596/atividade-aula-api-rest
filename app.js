@@ -42,6 +42,15 @@ app.post("/objetos/cadastrar", (req, res) => {
     dados.push(novoDispositivo);
 });
 
+app.delete("/objetos/excluir/:id", (req, res) => {
+    const idDisp = req.params.id;
+
+    const index = dados.findIndex(disp => disp.id == idDisp);
+
+    dados.filter(disp => disp !== index);
+
+});
+
 app.listen(3000, () => {
     console.log("Servidor rodando na porta 3000");
 });
