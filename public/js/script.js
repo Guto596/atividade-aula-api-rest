@@ -72,6 +72,11 @@ async function cadastrarItem() {
     const capacidade = document.querySelector("#campoCapacidade").value;
     const preco = document.querySelector("#campoPreco").value;
 
+    if (!idDispositivo || !nome || !cor || !capacidade || !preco) {
+        alert("Preencha todos os campos antes de cadastrar.");
+        return;
+    }
+
     const objetoDispositivo = {
         id: idDispositivo,
         name: nome,
