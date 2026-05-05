@@ -40,6 +40,7 @@ app.post("/objetos/cadastrar", (req, res) => {
     console.log(novoDispositivo);
 
     dados.push(novoDispositivo);
+    res.status(201).json({ mensagem: "Objeto cadastrado!" });
 });
 
 app.delete("/objetos/excluir/:id", (req, res) => {
